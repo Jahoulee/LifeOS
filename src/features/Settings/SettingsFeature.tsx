@@ -5,7 +5,6 @@ import { storage } from '../../services/storage';
 export function SettingsFeature() {
   const { settings, updateSettings } = useApp();
   const [localSettings, setLocalSettings] = useState(settings);
-  const [showExport, setShowExport] = useState(false);
 
   const handleSave = () => {
     updateSettings(localSettings);

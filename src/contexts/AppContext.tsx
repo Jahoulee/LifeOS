@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { storage } from '../services/storage';
 import { UserSettings, SleepRecord, DailyTask, FocusRecord, WeeklyReview, Vision, BackwardStep, Inspiration } from '../types';
-import { getToday, getWeekStart, getWeekEnd } from '../utils';
+import { getToday, getWeekStart } from '../utils';
 
 interface AppContextType {
   settings: UserSettings;
@@ -45,7 +45,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [dailyTasks, setDailyTasks] = useState(() => storage.getDailyTasks(getToday()));
   const [focusRecords, setFocusRecords] = useState(() => {
     const today = getToday();
-    const weekStart = getWeekStart(new Date());
     return storage.getFocusRecords({ start: today, end: today });
   });
   const [weeklyReviews, setWeeklyReviews] = useState(() => storage.getWeeklyReviews());

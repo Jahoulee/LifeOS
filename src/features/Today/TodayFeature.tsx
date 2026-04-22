@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useApp } from '../../contexts/AppContext';
-import { getToday, calculateDuration, formatDuration, isSleepRegular, getWeekStart, getWeekEnd, formatDate } from '../../utils';
+import { getToday, calculateDuration, formatDuration, isSleepRegular, getWeekStart, formatDate } from '../../utils';
 
 export function TodayFeature() {
   const { sleepRecords, addSleepRecord, updateSleepRecord, dailyTasks, addDailyTask, updateDailyTask, deleteDailyTask, focusRecords, addFocusRecord, settings, inspirations, addInspiration, deleteInspiration } = useApp();
   const [newTask, setNewTask] = useState('');
   const [newInspiration, setNewInspiration] = useState('');
-  const [sleepForm, setSleepForm] = useState({ sleepTime: '23:00', wakeTime: '07:00', quality: 'good' as const });
+  const [sleepForm, setSleepForm] = useState<{ sleepTime: string; wakeTime: string; quality: 'poor' | 'fair' | 'good' | 'excellent' }>({ sleepTime: '23:00', wakeTime: '07:00', quality: 'good' });
   const [isEditingSleep, setIsEditingSleep] = useState(false);
   const [isFocusing, setIsFocusing] = useState(false);
   const [focusTime, setFocusTime] = useState(0);

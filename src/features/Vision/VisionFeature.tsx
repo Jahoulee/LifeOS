@@ -3,7 +3,7 @@ import { useApp } from '../../contexts/AppContext';
 import { getCurrentQuarter, getQuartersAhead } from '../../utils';
 
 export function VisionFeature() {
-  const { visions, addVision, updateVision, deleteVision, backwardSteps, addBackwardStep, updateBackwardStep, deleteBackwardStep, selectedVisionId, setSelectedVisionId } = useApp();
+  const { visions, addVision, deleteVision, backwardSteps, addBackwardStep, updateBackwardStep, deleteBackwardStep, selectedVisionId, setSelectedVisionId } = useApp();
   const [newVisionTitle, setNewVisionTitle] = useState('');
   const [newVisionDesc, setNewVisionDesc] = useState('');
   const [newVisionDate, setNewVisionDate] = useState('');

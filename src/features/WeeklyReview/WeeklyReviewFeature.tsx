@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../../contexts/AppContext';
-import { getToday, getWeekStart, getWeekEnd, formatDate, formatDuration, formatWeekRange } from '../../utils';
+import { getWeekStart, getWeekEnd, formatDate, formatDuration, formatWeekRange } from '../../utils';
 
 export function WeeklyReviewFeature() {
   const { sleepRecords, dailyTasks, focusRecords, weeklyReviews, addWeeklyReview } = useApp();
