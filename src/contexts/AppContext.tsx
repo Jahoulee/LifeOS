@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { storage } from '../services/storage';
 import { UserSettings, SleepRecord, DailyTask, FocusRecord, WeeklyReview, Vision, BackwardStep, Inspiration } from '../types';
-import { getToday, getWeekStart } from '../utils';
+import { getToday } from '../utils';
 
 interface AppContextType {
   settings: UserSettings;
