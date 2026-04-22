@@ -3,9 +3,8 @@ import { AppProvider, useApp } from './contexts/AppContext';
 import { TabNav } from './components/TabNav';
 import { Modal } from './components/Modal';
 import { TodayFeature } from './features/Today';
-import { WeeklyReviewFeature } from './features/WeeklyReview';
-import { VisionFeature } from './features/Vision';
 import { SettingsFeature } from './features/Settings';
+import { AuthFeature } from './features/Auth';
 
 const tabs = [
   { id: 'today', label: '今日' },
@@ -14,8 +13,23 @@ const tabs = [
 ];
 
 function AppContent() {
-  const { currentTab, setCurrentTab } = useApp();
+  const { user, loading, signOut, currentTab, setCurrentTab } = useApp();
   const [showSettings, setShowSettings] = useState(false);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-500">加载中...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <AuthFeature />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -24,12 +38,11 @@ function AppContent() {
         activeTab={currentTab}
         onChange={setCurrentTab}
         onSettingsClick={() => setShowSettings(true)}
+        onSignOut={signOut}
       />
 
       <main className="flex-1 max-w-5xl mx-auto p-4 pb-12 bg-white w-full">
         {currentTab === 'today' && <TodayFeature />}
-        {currentTab === 'review' && <WeeklyReviewFeature />}
-        {currentTab === 'vision' && <VisionFeature />}
       </main>
 
       <footer className="bg-black text-gray-400 py-8 mt-auto">
